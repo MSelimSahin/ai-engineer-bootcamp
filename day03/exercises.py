@@ -1,3 +1,4 @@
+import random
 # a) FizzBuzz
 for i in range(1, 101):
     if i % 5 == 0 and i % 3 == 0:
@@ -12,8 +13,11 @@ for i in range(1, 101):
 # b) question A in the exam
 numbers = [1, 10, 3, 12, 21, 7]
 
-largest = 0
-second = 0
+largest = random.choice(numbers)
+second = random.choice(numbers)
+
+# or we could set second to float("-inf")
+# second = float("-inf")
 
 for item in numbers:
     if item > largest or largest == second:
@@ -22,7 +26,7 @@ for item in numbers:
     elif item < largest and second < item:
         second = item
 
-print(largest, second)
+    print(largest, second)
 
 # c) question D in the exam
 a = [1, 2, 3]
@@ -31,10 +35,10 @@ b = [4, 5, 6]
 if len(a) != len(b):
     print("These lists can't be dot producted. Because of their lengths.")
 else:
-    sum = 0
+    total = 0
     idx = -1
     for x in a:
         idx += 1
-        sum += x * b[idx]
+        total += x * b[idx]
 
-    print(sum)
+    print(total)
