@@ -4,8 +4,13 @@ fn = int(input("How much cases that were missed as positive?\n"))
 tn = int(input("How much cases correctly predicted as negative?\n"))
 total = tp + fp + fn + tn
 
-accuracy = (tp + tn) / total
 
+
+if total == 0:
+    print("Accuracy set to 0: the model didn't do any predictions.")
+    accuracy = 0
+else:
+    accuracy = (tp + tn) / total
 
 if tp + fp == 0:
     print("Precision set to 0: the model made no positive predictions.")
@@ -14,7 +19,7 @@ else:
     precision = tp / (tp + fp)
 
 if tp + fn == 0:
-    print("Recall set to 0: the model made no positive predictions.")
+    print("Recall set to 0: there are no actual positives in the data.")
     recall = 0
 else:
     recall = tp / (tp + fn)
