@@ -30,5 +30,3 @@ def std(values: list) -> float:
     assert values != [], "There is no value to be calculated."
     std = variance(values) ** 0.5
     return round(std, 2)
-
-test = [2, 4, 4, 4, 5, 5, 7, 9]
