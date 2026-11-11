@@ -26,13 +26,14 @@ def word_count(sentence):
     return word_dict
 
 # 3) Testing
-assert second_largest([1, 10, 3, 12, 21, 7]) == 12
-assert second_largest([21, 3, 10]) == 10
-assert second_largest([2, 1]) == 1
-assert second_largest([-1, -3]) == -3
-assert second_largest([5, 5, 3]) == 3
-assert second_largest([10, 10, 10]) == None
-assert second_largest([7]) == None
+if __name__ == "__main__":
+    assert second_largest([1, 10, 3, 12, 21, 7]) == 12
+    assert second_largest([21, 3, 10]) == 10
+    assert second_largest([2, 1]) == 1
+    assert second_largest([-1, -3]) == -3
+    assert second_largest([5, 5, 3]) == 3
+    assert second_largest([10, 10, 10]) == None
+    assert second_largest([7]) == None
 
-assert word_count("The cat in the hat") == {"the": 2, "cat": 1, "in": 1, "hat": 1}
-assert word_count("Testing THE funcTions WIth assert") == {"testing": 1, "the": 1, "functions": 1, "with": 1, "assert": 1}
+    assert word_count("The cat in the hat") == {"the": 2, "cat": 1, "in": 1, "hat": 1}
+    assert word_count("Testing THE funcTions WIth assert") == {"testing": 1, "the": 1, "functions": 1, "with": 1, "assert": 1}

@@ -32,7 +32,8 @@ def std(values: list) -> float:
     std = variance(values) ** 0.5
     return std
 
-test = [2, 4, 4, 4, 5, 5, 7, 9]
-assert round(mean(test), 2) == 5.00
-assert round(variance(test), 2) == 4.00
-assert round(std(test), 2) == 2.00
+if __name__ == "__main__":
+    test = [2, 4, 4, 4, 5, 5, 7, 9]
+    assert round(mean(test), 2) == 5.00
+    assert round(variance(test), 2) == 4.00
+    assert round(std(test), 2) == 2.00
