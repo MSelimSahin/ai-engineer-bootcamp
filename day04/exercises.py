@@ -4,37 +4,35 @@ def second_largest(numbers: list):
     largest = float("-inf")
     second = float("-inf")
 
-    for item in numbers:
-        if len(numbers) == 1:
-            largest = item
-            second = None
-        elif item in numbers[item:]:
-            if numbers.index(item) == numbers[-1]:
-                second = None
-            else:
-                continue
-        elif item == largest:
-            second = None
-        elif item > largest and second < item:
+    for number in numbers:
+        if number > largest:
             second = largest
-            largest = item
-        elif item > largest:
-            largest = item
-        else:
-            second = None
+            largest = number
+        elif number != largest and number > second:
+            second = number
 
-    return largest, second
-
-numbers = [10, 10, 10]
-print(second_largest(numbers=numbers))
+    if second == float("-inf"):
+        return None
+    else:
+        return second
 
 # 2) question b in the exam
 
 def word_count(sentence):
     word_dict = {}
-    sentence = sentence.lower().split(" ")
+    sentence = sentence.lower().split()
     for word in sentence:
         word_dict[word] = word_dict.get(word, 0) + 1
-    print(word_dict)
+    return word_dict
 
-word_count("the cat and the hat")
+# 3) Testing
+assert second_largest([1, 10, 3, 12, 21, 7]) == 12
+assert second_largest([21, 3, 10]) == 10
+assert second_largest([2, 1]) == 1
+assert second_largest([-1, -3]) == -3
+assert second_largest([5, 5, 3]) == 3
+assert second_largest([10, 10, 10]) == None
+assert second_largest([7]) == None
+
+assert word_count("The cat in the hat") == {"the": 2, "cat": 1, "in": 1, "hat": 1}
+assert word_count("Testing THE funcTions WIth assert") == {"testing": 1, "the": 1, "functions": 1, "with": 1, "assert": 1}
