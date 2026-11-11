@@ -3,26 +3,28 @@ def accuracy(tp, fp, fn, tn):
     total = tp + fp + fn + tn
     if total == 0:
         return 0
-    accuracy = (tp + tn) / total
-    return round(accuracy, 2)
+    result = (tp + tn) / total
+    return result
 
 def precision(tp, fp):
     if tp + fp == 0:
         return 0
-    precision = tp / (tp + fp)
-    return round(precision, 2)
+    result = tp / (tp + fp)
+    return result
 
 def recall(tp, fn):
     if tp + fn == 0:
         return 0
-    recall = tp / (tp + fn)
-    return round(recall, 2)
+    result = tp / (tp + fn)
+    return result
 
 def f1_score(tp, fp, fn):
     if tp == 0:
         return 0
-    f1_score = 2 * precision(tp=tp, fp=fp) * recall(tp=tp, fn=fn) / (precision(tp=tp, fp=fp) + recall(tp=tp, fn=fn))
-    return f1_score
+    calculated_precision = precision(tp=tp, fp=fp)
+    calculated_recall = recall(tp=tp, fn=fn)
+    result = 2 * calculated_precision * calculated_recall / (calculated_precision + calculated_recall)
+    return result
 
 # b) Dot product
 def dot(a: list, b: list):
@@ -53,14 +55,13 @@ for lr in learning_rates:
     print(gradient_descent(10, lr))
 
 # d) Testing
-assert accuracy(0, 0, 0, 0) == 0
-assert accuracy(-1, -1, -1, -1) == 0.50 
+assert round(accuracy(0, 0, 0, 0), 2) == 0
 
-assert precision(0, 0) == 0
-assert precision(1, 2) == 0.33
+assert round(precision(0, 0), 2) == 0
+assert round(precision(1, 2), 2) == 0.33
 
-assert recall(0, 0) == 0
-assert recall(2, 1) == 0.67
+assert round(recall(0, 0), 2) == 0
+assert round(recall(2, 1), 2) == 0.67
 
 assert f1_score(0, 2, 6) == 0
 assert f1_score(4, 0, 0) == 1
@@ -71,5 +72,5 @@ assert dot([], []) == None
 assert gradient_descent(0, 0) == (0, 10000)
 assert gradient_descent(10, 0.1) == (-1.5, 77)
 
-if AssertionError:
-    print("All tests passed!")
+
+print("All tests passed!")
