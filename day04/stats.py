@@ -8,7 +8,7 @@ def mean(values: list) -> float:
     for value in values:
         total += value
     mean = total / len(values)
-    return round(mean, 2)
+    return mean
 
 def variance(values: list) -> float:
     """Calculates the variance of given values.
@@ -20,7 +20,7 @@ def variance(values: list) -> float:
     for value in values:
         total += (value - mean(values)) ** 2 
     variance = total / len(values)
-    return round(variance, 2)
+    return variance
 
 def std(values: list) -> float:
     """Calculates std of given values.
@@ -29,4 +29,9 @@ def std(values: list) -> float:
     """
     assert values != [], "There is no value to be calculated."
     std = variance(values) ** 0.5
-    return round(std, 2)
+    return std
+
+test = [2, 4, 4, 4, 5, 5, 7, 9]
+assert round(mean(test), 2) == 5.00
+assert round(variance(test), 2) == 4.00
+assert round(std(test), 2) == 2.00
