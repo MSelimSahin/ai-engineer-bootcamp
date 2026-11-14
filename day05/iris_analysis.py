@@ -18,14 +18,28 @@ def load_csv(path):
 
     return header, rows
 
+    # d) Split train/test data
+def train_test_split(rows):
+    test = []
+    train = []
+    [test.append(row) for idx, row in enumerate(rows) if idx % 5 == 0]
+    [train.append(row) for idx, row in enumerate(rows) if idx % 5 != 0]
+    return (train, test)
+
 if __name__ == "__main__":
     header, rows = load_csv("day05/iris.csv")
-    print(len(rows))
 
     # b) Species count
     species = []
     [species.append(row[4]) for row in rows]
-    count_by(species)
+    pieces = count_by(species)
 
     # c) statistics
-    
+    statistics = {}
+    for class_name in pieces.keys():
+        statistics[class_name] = {}
+        print(class_name)
+        for col, head in enumerate(header[:4]):
+            values = [row[col] for row in rows if row[4] == class_name]
+            m, s = statistics[class_name][head] = (mean(values), std(values))
+            print(f"{head:>15}: {m:.2f} ± {s:.2f}")
