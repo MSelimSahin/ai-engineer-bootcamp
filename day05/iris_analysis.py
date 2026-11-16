@@ -18,13 +18,27 @@ def load_csv(path):
 
     return header, rows
 
-    # d) Split train/test data
+# d) Split train/test data
 def train_test_split(rows):
     test = []
     train = []
     [test.append(row) for idx, row in enumerate(rows) if idx % 5 == 0]
     [train.append(row) for idx, row in enumerate(rows) if idx % 5 != 0]
     return (train, test)
+
+# e) nearest centroid classifier
+# 1. train
+def fit_centroids(train):
+    centroid = {}
+    species = []
+    [species.append(row[4]) for row in train]
+    pieces = count_by(species)
+    for class_name in pieces.keys():
+        centroid[class_name] = []
+        for idx in range(len(train[0]) - 1):
+            values = [row[idx] for row in train if row[4] == class_name]
+            centroid[class_name].append(mean(values))
+    return centroid
 
 if __name__ == "__main__":
     header, rows = load_csv("day05/iris.csv")
@@ -43,3 +57,7 @@ if __name__ == "__main__":
             values = [row[col] for row in rows if row[4] == class_name]
             m, s = statistics[class_name][head] = (mean(values), std(values))
             print(f"{head:>15}: {m:.2f} ± {s:.2f}")
+
+    train, test = train_test_split(rows)
+    centroids = fit_centroids(train)
+    print(centroids["setosa"])
