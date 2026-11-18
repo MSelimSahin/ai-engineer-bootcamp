@@ -16,7 +16,7 @@ def matmul(A, B):
     if len(A[0]) == len(B):
         transposed_b = transpose(B)
         return [[dot(row, col) for col in transposed_b] for row in A]
-    return None
+    raise TypeError(f"Length mismatch: {len(A[0])} vs {len(B)}")
 
 # d) count each element occuring in the list
 def count_by(items: list) -> dict:
@@ -34,3 +34,9 @@ if __name__ == "__main__":
     assert matmul([[1, 2, 3], [4, 5, 6]], [[1, 4], [2, 5], [3, 6]]) == [[14, 32], [32, 77]]
     assert transpose([]) == []
     assert flatten([[1, 1], [2, 1]]) == [1, 1, 2, 1]
+
+    try:
+        matmul([1, 2, 3], [1])
+        assert False, "matmul should have raised TypeError"
+    except TypeError:
+        pass
