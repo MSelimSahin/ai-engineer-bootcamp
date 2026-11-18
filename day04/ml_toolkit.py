@@ -29,9 +29,9 @@ def f1_score(tp, fp, fn):
 # b) Dot product
 def dot(a: list, b: list):
     if len(a) != len(b):
-        return None
+        raise ValueError(f"Length mismatch: {len(a)} vs {len(b)}")
     if len(a) == 0 or len(b) == 0:
-        return None
+        raise ValueError("Length Could not be 0.")
     total = 0
     for idx in range(len(a)):
         total += a[idx] * b[idx]
@@ -68,10 +68,21 @@ if __name__ == "__main__":
     assert f1_score(4, 0, 0) == 1
 
     assert dot([1, 2, 3], [4, 5, 6]) == 32
-    assert dot([], []) == None
 
     assert gradient_descent(0, 0) == (0, 10000)
     assert gradient_descent(10, 0.1) == (-1.5, 77)
+
+    try:
+        dot([1, 2], [1, 2, 3])
+        assert False, "dot should have raised ValueError"
+    except ValueError:
+        pass
+
+    try:
+        dot([], [1, 2])
+        assert False, "dot should have raised ValueError"
+    except ValueError:
+        pass
 
 
     print("All tests passed!")
