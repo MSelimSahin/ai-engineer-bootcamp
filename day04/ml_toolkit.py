@@ -31,7 +31,7 @@ def dot(a: list, b: list):
     if len(a) != len(b):
         raise ValueError(f"Length mismatch: {len(a)} vs {len(b)}")
     if len(a) == 0 or len(b) == 0:
-        raise ValueError("Length Could not be 0.")
+        raise ValueError("Vectors must not be empty.")
     total = 0
     for idx in range(len(a)):
         total += a[idx] * b[idx]
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         pass
 
     try:
-        dot([], [1, 2])
+        dot([], [])
         assert False, "dot should have raised ValueError"
     except ValueError:
         pass
