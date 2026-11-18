@@ -44,7 +44,7 @@ def fit_centroids(train):
 # 2.1 euclid distance formula
 def distance(a:list, b:list):
     if len(a) != len(b):
-        return None
+        raise ValueError(f"Length mismatch: {len(a)} vs {len(b)}")
     total = 0
     for idx in range(len(a)):
         total += (b[idx] - a[idx]) ** 2
@@ -58,12 +58,9 @@ def predict(features, centroids):
     specie = ''
     for idx, centroid in enumerate(centroids.keys()):
         space = distance(features, centroids[centroid])
-        if type(space) == None:
-            continue
-        else:
-            if space < min:
-                min = space
-                specie = list(centroids.keys())[idx]
+        if space < min:
+            min = space
+            specie = list(centroids.keys())[idx]
     return specie
 
 if __name__ == "__main__":
@@ -117,3 +114,9 @@ if __name__ == "__main__":
     assert predict([7.0, 3.2, 4.7, 1.4], centroids) == "virginica"
     assert predict([0, 0, 0, 0], centroids) == "setosa"
     assert predict([100, 100, 100, 100], centroids) == "virginica"
+
+    try:
+        distance([1, 2], [1, 2, 3])
+        assert False, "distance should have raised ValueError"
+    except ValueError:
+        pass
