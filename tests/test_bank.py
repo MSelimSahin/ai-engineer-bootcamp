@@ -23,9 +23,10 @@ def test_insufficient_funds():
 
 def test_failed_transaction():
     acc = BankAccount("Selim", 100)
-    with pytest.raises(ValueError):
-        acc.withdraw(-100)
-        assert acc.history == []
+    with pytest.raises(InsufficientFundsError):
+        acc.withdraw(500)
+    assert acc.history == []
+    assert acc.balance == 100
 
 def test_account_independency():
     acc = BankAccount("Selim", 200)
