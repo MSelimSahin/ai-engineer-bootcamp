@@ -19,8 +19,9 @@ From-scratch machine learning in pure Python.
 - [Nearest Centroid Classifier from scratch](day06/classifier.py): 96.67% test accuracy on the Iris dataset, no ML libraries.
 - [Gradient descent + learning rate experiments](day03/gradient_descent.py): Gradient descent from scratch. Converges in 77 steps at lr=0.1, oscillates at lr=1.0 and diverges at lr=1.1.
 - [Precision/recall/F1 evaluator](day02/model_evaluator.py): Precision, recall, F1 score from scratch.
-- [Matrix multiplication + Transpose](day05/exercises.py): Pure-Python matrix multiplication and transpose
+- [Matrix multiplication + Transpose](day05/exercises.py): Pure-Python matrix multiplication and transpose.
 - [pytest test suite](tests/)
+- [Cross-validation](day08/arena.py): Compared nearest centroid vs. k-NN with leave-one-out cross-validation.
 
 ## Project Structure
 
