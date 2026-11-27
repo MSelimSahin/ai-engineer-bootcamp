@@ -4,24 +4,18 @@ from day05.iris_analysis import train_test_split, load_csv
 def leave_one_out(model, rows):
     true_count = 0
     for idx, row in enumerate(rows):
-        rows.remove(row)
-        prediction = model.fit(rows[:-1]).predict(row[:-1])
+        others = rows[:idx] + rows[idx + 1:]
+        prediction = model.fit(others).predict(row[:-1])
         if prediction == row[-1]:
             true_count += 1
-        rows.insert(idx, row)
-    return f"Accuracy: {true_count / len(rows):.2f}%"
+    return true_count / len(rows)
 
 if __name__ == "__main__":
 
-    models = [NearestCentroidClassifier(), KNNClassifier(1), KNNClassifier(3), KNNClassifier(5), KNNClassifier(15)]
+    models = [NearestCentroidClassifier(), KNNClassifier(1), KNNClassifier(3), KNNClassifier(5), KNNClassifier(15), KNNClassifier(51)]
 
     header, rows = load_csv("day05/iris.csv")
     train, test = train_test_split(rows)
 
     for model in models:
-        print(f"{repr(model)}: {model.fit(train).score(test)}")
-        print(leave_one_out(model=model, rows=rows))
-        print("-" * len(model.__class__.__name__))
-
-    print(f"{repr(KNNClassifier(51))}: {model.fit(train).score(test)}")
-    print(leave_one_out(model=KNNClassifier(51), rows=rows))
+        print(f"{repr(model)}: test={model.fit(train).score(test):.4f} loo={leave_one_out(model=model, rows=rows):.4f}\n")
