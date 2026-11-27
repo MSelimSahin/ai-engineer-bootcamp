@@ -33,8 +33,8 @@ def dot(a: list, b: list):
     if len(a) == 0 or len(b) == 0:
         raise ValueError("Vectors must not be empty.")
     total = 0
-    for idx in range(len(a)):
-        total += a[idx] * b[idx]
+    for x, y in zip(a, b):
+        total += x * y
     return total
 
 # c) Gradient descent
