@@ -46,8 +46,8 @@ def distance(a:list, b:list):
     if len(a) != len(b):
         raise ValueError(f"Length mismatch: {len(a)} vs {len(b)}")
     total = 0
-    for idx in range(len(a)):
-        total += (b[idx] - a[idx]) ** 2
+    for x, y in zip(a, b):
+        total += (y - x) ** 2
     rooted_total = total ** 0.5
     return rooted_total
 
