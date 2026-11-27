@@ -12,7 +12,7 @@ def closest_to_origin(points):
 # c)
 def majority_vote(labels):
     if not labels:
-        raise ValueError("Labels could not be empty.")
+        raise ValueError("Labels must not be empty.")
     total = count_by(labels)
     maximum = max(total, key=lambda p: total[p])
     return maximum
