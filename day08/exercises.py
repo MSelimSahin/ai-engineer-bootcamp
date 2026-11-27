@@ -7,10 +7,12 @@ points_sorted = sorted(points, key=lambda pair: pair[1], reverse=True)
 
 # b) 
 def closest_to_origin(points):
-    return min(points, key=lambda p: distance(p, [0, 0]))
+    return min(points, key=lambda p: distance(p, [0] * len(p)))
 
 # c)
 def majority_vote(labels):
+    if not labels:
+        raise ValueError("Labels could not be empty.")
     total = count_by(labels)
     maximum = max(total, key=lambda p: total[p])
     return maximum
